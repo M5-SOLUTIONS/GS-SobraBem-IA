@@ -9,8 +9,11 @@ O sistema garante duas regras: **ninguém reserva mais do que existe** e **ningu
 
 | Nome | RM |
 |---|---|
-|  |  |
-|  |  |
+| Daniel Fonseca de Almeida | RM 563045 |
+| Erick de Faria Gama | RM 561951 |
+| Guilherme Batista Cintra | RM 562850 |
+| Matheus Nascimento Corregio | RM 563765 |
+| Pedro Fonseca de Almeida | RM 563466 |
 
 ## Tecnologias
 
