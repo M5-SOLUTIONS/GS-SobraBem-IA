@@ -203,4 +203,4 @@ app funcione sem a chave.
 
 ## Deploy
 
-API publicada em: _(preencher com a URL)_
+API publicada em: Rodando localmente (`http://localhost:8080`)
