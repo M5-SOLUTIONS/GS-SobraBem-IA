@@ -36,9 +36,8 @@ O relatório com os casos testados, os resultados, a interpretação e as limita
 7. [Avaliação](#7-avaliação)
 8. [Uso responsável](#8-uso-responsável)
 9. [Limitações](#9-limitações)
-10. [Problemas encontrados e soluções](#10-problemas-encontrados-e-soluções)
-11. [Estrutura do repositório](#11-estrutura-do-repositório)
-12. [Declaração de uso de IA no desenvolvimento](#12-declaração-de-uso-de-ia-no-desenvolvimento)
+10. [Estrutura do repositório](#10-estrutura-do-repositório)
+11. [Declaração de uso de IA no desenvolvimento](#11-declaração-de-uso-de-ia-no-desenvolvimento)
 
 ---
 
@@ -153,7 +152,6 @@ de fonte conhecida, a API mostra de qual arquivo veio e, sem base, avisa em vez 
 | Integração | **Spring AI 2.0.2** (`spring-ai-starter-model-google-genai` e `...-embedding`) | starter oficial; trocar de modelo ou provedor é configuração, não código |
 | Vector store | `SimpleVectorStore` (`spring-ai-vector-store`) | em memória, sem infraestrutura extra |
 | Aplicação | Java 21, Spring Boot 4.1, Oracle, Flyway | a API do SobraBem, onde a IA está integrada |
-| Avaliação | Python 3 + `requests` | script simples que chama a API real e calcula as métricas |
 
 **Alternativa considerada:** modelo local com Ollama. Não há custo e nenhum dado sai da máquina, mas exige
 mais hardware de quem roda o projeto. Com o Spring AI, a troca seria de configuração.
@@ -181,11 +179,11 @@ University Extension, Tetra Pak e Itatiaia.
 1. Coleta das fontes, com link e data de acesso registrados em `FONTES.md`.
 2. Escrita dos arquivos: um título `#` com a categoria, uma seção `##` por alimento (ou por regra geral da
    categoria), e cada afirmação terminando com o código da fonte:
-   ```markdown
+```markdown
    ## Iogurte e bebida láctea
    - Na geladeira, de 7 a 14 dias [F6].
    - Iogurte com mofo deve ser descartado inteiro [F4].
-   ```
+```
 3. Conversão de unidades americanas (°F, polegadas) para as brasileiras, registrada em `FONTES.md`.
 4. Regra de segurança nos arquivos de produtos embalados: os prazos nunca passam a validade impressa na
    embalagem.
@@ -231,13 +229,13 @@ Confira no log: `Corpus indexado: 5 arquivos, 41 trechos`.
 No Swagger (http://localhost:8080/swagger-ui.html):
 
 1. Cadastre um doador em `POST /api/auth/registro`:
-   ```json
+```json
    {
      "nome": "Padaria Pão Quente", "email": "contato@paoquente.com.br", "senha": "Senha123",
      "telefone": "11987654321", "papel": "DOADOR",
      "endereco": "Avenida Paulista, 1000 - Bela Vista", "cidade": "São Paulo", "uf": "SP"
    }
-   ```
+```
 2. Faça login em `POST /api/auth/login`, copie o `token` e cole em **Authorize**.
 3. Chame `POST /api/ia/orientacoes` com `{ "titulo": "Iogurte natural", "descricao": "potes de 170 g", "categoriaId": 3 }`.
 
@@ -288,9 +286,9 @@ do RAG com o Gemini simulado.
 2. Abra o Swagger em http://localhost:8080/swagger-ui.html, cadastre um DOADOR em
    `POST /api/auth/registro`, faça login e cole o `token` em **Authorize**.
 3. Para cada caso da tabela do relatório, chame `POST /api/ia/orientacoes`, por exemplo:
-   ```json
+```json
    { "titulo": "Iogurte de morango", "descricao": "potes de 170 g", "categoriaId": 3 }
-   ```
+```
 4. Compare a resposta com a coluna "Esperado" do relatório. Nos alimentos cobertos, confira o texto contra
    a seção indicada no arquivo de `src/main/resources/corpus/`.
 
@@ -313,7 +311,7 @@ do RAG com o Gemini simulado.
 - **Transparência:** o campo `fontes` mostra de qual arquivo do corpus veio a orientação, e o app exibe
   "Orientação gerada por IA com base em: … Na dúvida, não consuma."
 - **Injeção de instrução:** o prompt avisa que o nome do alimento foi digitado por um usuário e deve ser
-  tratado só como dado. Isso é testado no caso de falha F6.
+  tratado só como dado. Isso é testado no caso 11 da avaliação.
 
 ---
 
