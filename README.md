@@ -205,7 +205,8 @@ cp .env.example .env
 ```
 
 Preencha no `.env`: `DB_URL`, `DB_USER`, `DB_PASSWORD`, `JWT_SECRET` (32 caracteres ou mais),
-`ADMIN_EMAIL`, `ADMIN_SENHA` e **`GEMINI_API_KEY`**. O `.env` está no `.gitignore`.
+`ADMIN_EMAIL`, `ADMIN_SENHA` e **`GEMINI_API_KEY`**. O `ADDRESS_RABBIT` já vem preenchido para o RabbitMQ
+do `docker compose` (`amqp://sobrabem:sobrabem@localhost:5672`). O `.env` está no `.gitignore`.
 
 **2. RabbitMQ**
 
@@ -261,7 +262,7 @@ A API funciona no modo fake e a orientação vem com `[FAKE]` e `fontes: ["orien
 | `404 ... is no longer available to new users` | o modelo de chat não está liberado para a sua chave. Troque `spring.ai.google.genai.chat.model` em `application-gemini.properties` por um Flash atual |
 | `JWT_SECRET precisa ter pelo menos 32 caracteres` | segredo ausente ou curto |
 | `Connection refused` (RabbitMQ) | o container do RabbitMQ não está rodando |
-
+| `ACCESS_REFUSED` (RabbitMQ) | `ADDRESS_RABBIT` vazio ou com usuário errado. Use o valor do `.env.example` |
 ---
 
 ## 7. Avaliação
