@@ -79,14 +79,14 @@ Execução em 18/11/2026, entre 21h32 e 21h47 (horário de Brasília), com as re
   API do Gemini no plano gratuito, que no dia respondia com alta demanda; o Spring AI repete a chamada
   quando o Gemini devolve erro temporário, e cada repetição soma tempo. Os casos 12 e 13 (23 ms e 3 ms)
   mostram que a API em si responde na hora.
-- **Limite de 20 s:** nesta execução, o limite da IA (`sobrabem.ia.timeout`) estava acima dos 20 s padrão
-  para que todos os casos terminassem. Com 20 s, os casos 2, 6, 8 e 9 teriam devolvido
-  503 `IA_INDISPONIVEL`, e o doador escreveria a orientação manualmente.
+- **Limite de tempo:** o limite da IA (`sobrabem.ia.timeout`) está em 600 s, justamente para que pedidos
+  lentos como os casos 2, 6, 8 e 9 terminem com a orientação em vez de devolver 503 `IA_INDISPONIVEL`. A
+  troca é a espera: em momentos de alta demanda do Gemini, o doador pode aguardar minutos.
 - **Ajustes:** nenhum ajuste foi necessário no limiar `sobrabem.ia.similaridade-minima`: ele recusou os
   alimentos fora do corpus sem bloquear os cobertos. Uma melhoria possível é limitar a resposta às regras
-  mais importantes para o alimento, para casos como o 6 ficarem mais curtos. Para o tempo, manter o limite
-  de 20 s (melhor um 503 rápido do que o doador esperando minutos) e, num uso real, usar o plano pago do
-  Gemini, com cota e prioridade maiores.
+  mais importantes para o alimento, para casos como o 6 ficarem mais curtos. Para o tempo, num uso real, o caminho
+  é o plano pago do Gemini, com cota e prioridade maiores, e um limite menor, para o doador não esperar
+  minutos.
 
 ## 5. Limitações
 
